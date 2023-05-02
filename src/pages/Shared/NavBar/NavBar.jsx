@@ -1,10 +1,20 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import logo from '../../../assets/logo.png';
 import {Link} from 'react-router-dom';
 import {FaRegWindowClose, FaBars} from 'react-icons/fa';
+import {AuthContext} from '../../../providers/AuthProvider';
+import {FaUser} from 'react-icons/fa';
 
 const NavBar = () => {
     const [navbar, setNavbar] = useState(false);
+    const {user, logOutUser} = useContext(AuthContext);
+    console.log(user);
+
+    const handleLogoutUser = () => {
+        logOutUser()
+            .then(() => { })
+            .catch()
+    }
 
     return (
         <nav className="w-full bg-white shadow">
@@ -37,10 +47,13 @@ const NavBar = () => {
                                 <a href="javascript:void(0)">Blog</a>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <Link to='/login' href="javascript:void(0)">Login</Link>
+                                {
+                                    user ? <Link onClick={handleLogoutUser} to='/login'>Log Out</Link> :
+                                        <Link to='/login'>Login</Link>
+                                }
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">Contact US</a>
+                                {user ? <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="" /> : <FaUser />}
                             </li>
                         </ul>
                     </div>
