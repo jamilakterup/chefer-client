@@ -8,7 +8,7 @@ import {AuthContext} from '../../providers/AuthProvider';
 const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const {signInUser} = useContext(AuthContext);
+    const {signInUser, googleSignInUser} = useContext(AuthContext);
 
 
     const handleLoginUser = e => {
@@ -23,6 +23,16 @@ const Login = () => {
                 const logedUser = result.user;
                 console.log(logedUser);
                 setSuccess('Usr Login Successful')
+            })
+            .catch(err => setError(err.message));
+    }
+
+
+    const handleGoogleSignUpUser = () => {
+        googleSignInUser()
+            .then(result => {
+                const googleLogin = result.user;
+                console.log(googleLogin);
             })
             .catch(err => setError(err.message));
     }
@@ -63,7 +73,7 @@ const Login = () => {
                             </form>
                         </div>
                         <p className='text-center my-6'>Or</p>
-                        <div className='border-2 p-2 rounded-lg border-primary'>
+                        <div onClick={handleGoogleSignUpUser} className='border-2 p-2 rounded-lg border-primary cursor-pointer hover:bg-slate-200'>
                             <p className='flex items-center justify-center gap-5 font-bold'><FaGoogle className='text-primary' /> Continue with google</p>
                         </div>
                         <div className='border-2 p-2 rounded-lg border-primary my-4'>
