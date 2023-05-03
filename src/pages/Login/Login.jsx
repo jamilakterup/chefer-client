@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {FaGoogle, FaGithub} from 'react-icons/fa';
 import Lottie from "lottie-react";
@@ -8,7 +8,8 @@ import {AuthContext} from '../../providers/AuthProvider';
 const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const {signInUser, googleSignInUser} = useContext(AuthContext);
+    const {signInUser, googleSignInUser, gitHubSignInUser, resetUserPassword} = useContext(AuthContext);
+    const emailRef = useRef();
 
 
     const handleLoginUser = e => {
@@ -37,6 +38,28 @@ const Login = () => {
             .catch(err => setError(err.message));
     }
 
+    const handleGitHubSignUpUser = () => {
+        gitHubSignInUser()
+            .then(result => {
+                const githubLogin = result.user;
+                console.log(githubLogin);
+            })
+            .catch(err => setError(err.message));
+    }
+
+    const handleResetPassword = () => {
+        const email = (emailRef.current.value);
+        if (!email) {
+            alert('Please enter a valid email');
+            return;
+        }
+        resetUserPassword(email)
+            .then(() => {
+                setSuccess('Password reset email sent!')
+            })
+            .catch(err => setError(err.message))
+    }
+
     return (
         <>
             <div className="hero min-h-screen my-12">
@@ -55,7 +78,7 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                    <input type="email" name='email' placeholder="email" ref={emailRef} className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -63,7 +86,7 @@ const Login = () => {
                                     </label>
                                     <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                                     <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover text-primary ">Forgot password?</a>
+                                        <small onClick={handleResetPassword} className="label-text-alt link link-hover text-primary ">Forgot password?</small>
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
@@ -73,10 +96,10 @@ const Login = () => {
                             </form>
                         </div>
                         <p className='text-center my-6'>Or</p>
-                        <div onClick={handleGoogleSignUpUser} className='border-2 p-2 rounded-lg border-primary cursor-pointer hover:bg-slate-200'>
+                        <div onClick={handleGoogleSignUpUser} className='border-2 p-2 rounded-lg border-primary cursor-pointer hover:bg-slate-200 duration-200'>
                             <p className='flex items-center justify-center gap-5 font-bold'><FaGoogle className='text-primary' /> Continue with google</p>
                         </div>
-                        <div className='border-2 p-2 rounded-lg border-primary my-4'>
+                        <div onClick={handleGitHubSignUpUser} className='border-2 p-2 rounded-lg border-primary my-4 cursor-pointer hover:bg-slate-200 duration-200'>
                             <p className='flex items-center justify-center gap-5 font-bold'><FaGithub /> Continue with github</p>
                         </div>
                     </div>

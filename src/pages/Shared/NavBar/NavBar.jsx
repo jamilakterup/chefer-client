@@ -22,7 +22,7 @@ const NavBar = () => {
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link className='flex items-center' to='/'>
-                            <img className='h-[40px]' src={logo} alt="" /> <p className='text-xl font-bold'>Cheafer</p>
+                            <img className='h-[40px]' src={logo} alt="" /> <p className='text-xl font-bold'>Chefer</p>
                         </Link>
                         <div className="md:hidden">
                             <button
@@ -41,14 +41,14 @@ const NavBar = () => {
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 font-bold">
                             <li className="text-gray-600 hover:text-blue-600">
-                                <Link to='/' href="javascript:void(0)">Home</Link>
+                                <Link to='/'>Home</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">Blog</a>
+                                <Link to='/blog'>Blog</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
                                 {
-                                    user ? <Link onClick={handleLogoutUser} to='/login'>Log Out</Link> :
+                                    user ? <button onClick={handleLogoutUser}>Log Out</button> :
                                         <Link to='/login'>Login</Link>
                                 }
                             </li>
