@@ -4,6 +4,8 @@ import Login from "../pages/Login/Login";
 import Header from "../pages/Shared/Header/Header";
 import Register from "../pages/Register/Register";
 import Blogs from "../pages/Blogs/Blogs";
+import Recipes from "../pages/Recipes/Recipes";
+import PrivetRoutes from "./PrivetRoutes";
 
 const router = createBrowserRouter([
     {
@@ -12,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Header />
+                element: <Header />,
             },
             {
                 path: 'blog',
@@ -27,6 +29,11 @@ const router = createBrowserRouter([
                 element: <Register />
             }
         ]
+    },
+    {
+        path: 'recipes/:id',
+        element: <PrivetRoutes><Recipes /></PrivetRoutes>,
+        loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`)
     }
 ])
 

@@ -8,11 +8,10 @@ import {FaUser} from 'react-icons/fa';
 const NavBar = () => {
     const [navbar, setNavbar] = useState(false);
     const {user, logOutUser} = useContext(AuthContext);
-    console.log(user);
 
     const handleLogoutUser = () => {
         logOutUser()
-            .then(() => { })
+            .then(() => {navigate('/');})
             .catch()
     }
 
@@ -53,7 +52,7 @@ const NavBar = () => {
                                 }
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                {user ? <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="" /> : <FaUser />}
+                                {user ? <img title={user.displayName} className='w-8 h-8 rounded-full' src={user.photoURL} alt="" /> : <FaUser />}
                             </li>
                         </ul>
                     </div>

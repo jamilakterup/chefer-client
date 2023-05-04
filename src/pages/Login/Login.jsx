@@ -1,5 +1,5 @@
 import React, {useContext, useRef, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {FaGoogle, FaGithub} from 'react-icons/fa';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../../public/login.json";
@@ -10,6 +10,7 @@ const Login = () => {
     const [success, setSuccess] = useState('');
     const {signInUser, googleSignInUser, gitHubSignInUser, resetUserPassword} = useContext(AuthContext);
     const emailRef = useRef();
+    const navigate = useNavigate();
 
 
     const handleLoginUser = e => {
@@ -23,7 +24,8 @@ const Login = () => {
             .then(result => {
                 const logedUser = result.user;
                 console.log(logedUser);
-                setSuccess('Usr Login Successful')
+                setSuccess('Usr Login Successful');
+                navigate('/');
             })
             .catch(err => setError(err.message));
     }
