@@ -25,17 +25,14 @@ const AuthProvider = ({children}) => {
     };
 
     const googleSignInUser = () => {
-        setLoading(true);
         return signInWithPopup(auth, googkeProvider);
     };
 
     const gitHubSignInUser = () => {
-        setLoading(true);
         return signInWithPopup(auth, gitHubProvider);
     };
 
     const resetUserPassword = (email) => {
-        setLoading(true);
         return sendPasswordResetEmail(auth, email)
     }
 

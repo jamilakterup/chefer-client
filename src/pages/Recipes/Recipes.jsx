@@ -10,7 +10,7 @@ const Recipes = () => {
     return (
         <div>
             <NavBar />
-            <div className="my-12 container mx-auto">
+            <div className="my-12 container mx-auto flex flex-col gap-12">
                 {
                     recipes.map(recipe => <Recipe
                         key={recipe.image}

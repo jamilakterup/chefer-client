@@ -14,7 +14,7 @@ const ChefData = ({chef}) => {
                     <p>Likes: {chef.likes}</p>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`/recipes/${chef.id}`}><button className="btn btn-primary">View recipe</button></Link>
+                    <Link to={`/recipes/${chef.id}`}><button className="inline-flex items-center px-4 py-2 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest bg-gray-500 hover:bg-gray-600 active:bg-gray-700 outline-none focus:border-gray-600 focus:ring ring-gray-300 disabled:opacity-25 disabled:cursor-not-allowed transition ease-in-out duration-150">View recipe</button></Link>
                 </div>
             </div>
         </div>
