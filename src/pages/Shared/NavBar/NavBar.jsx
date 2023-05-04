@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import logo from '../../../assets/logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {FaRegWindowClose, FaBars} from 'react-icons/fa';
 import {AuthContext} from '../../../providers/AuthProvider';
 import {FaUser} from 'react-icons/fa';
@@ -8,6 +8,7 @@ import {FaUser} from 'react-icons/fa';
 const NavBar = () => {
     const [navbar, setNavbar] = useState(false);
     const {user, logOutUser} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogoutUser = () => {
         logOutUser()

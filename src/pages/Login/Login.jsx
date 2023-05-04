@@ -1,5 +1,5 @@
 import React, {useContext, useRef, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {FaGoogle, FaGithub} from 'react-icons/fa';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../../public/login.json";
@@ -11,7 +11,8 @@ const Login = () => {
     const {signInUser, googleSignInUser, gitHubSignInUser, resetUserPassword} = useContext(AuthContext);
     const emailRef = useRef();
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLoginUser = e => {
         e.preventDefault();
@@ -25,7 +26,7 @@ const Login = () => {
                 const logedUser = result.user;
                 console.log(logedUser);
                 setSuccess('Usr Login Successful');
-                navigate('/');
+                navigate(from, {replace: true});
             })
             .catch(err => setError(err.message));
     }
@@ -35,6 +36,8 @@ const Login = () => {
         googleSignInUser()
             .then(result => {
                 const googleLogin = result.user;
+                setSuccess('Usr Login Successful');
+                navigate(from, {replace: true});
                 console.log(googleLogin);
             })
             .catch(err => setError(err.message));
@@ -44,6 +47,8 @@ const Login = () => {
         gitHubSignInUser()
             .then(result => {
                 const githubLogin = result.user;
+                setSuccess('Usr Login Successful');
+                navigate(from, {replace: true});
                 console.log(githubLogin);
             })
             .catch(err => setError(err.message));

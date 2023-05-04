@@ -1,15 +1,17 @@
 import React, {useContext, useState} from 'react';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../../public/login.json";
-import {Link} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../providers/AuthProvider';
 import {updateProfile} from 'firebase/auth';
 
 const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
     const {SignUpNewUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleRegisterUser = e => {
         e.preventDefault();
@@ -35,8 +37,9 @@ const Register = () => {
         SignUpNewUser(email, password)
             .then(result => {
                 const registeredUser = result.user;
-                setSuccess('successfully registered user')
-                updateuserInfo(result.user, name, photo)
+                setSuccess('successfully registered user');
+                updateuserInfo(result.user, name, photo);
+                navigate(from, {replace: true});
                 console.log(registeredUser);
             })
             .catch(error => setError(error.message));
