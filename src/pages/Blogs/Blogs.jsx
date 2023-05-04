@@ -1,9 +1,11 @@
 import React from 'react';
+import ReactToPdf from 'react-to-pdf';
 import './Blogs.css';
 
 const Blogs = () => {
+    const ref = React.createRef();
     return (
-        <section className='container mx-auto'>
+        <section ref={ref} className='container mx-auto'>
             <div>
                 <h1 className='text-3xl m-8'>Q1: Difference between controlled and uncontrolled component</h1>
                 <table className="table w-75 mx-auto">
@@ -84,6 +86,12 @@ const Blogs = () => {
                     <li>Share logic across projects: Custom hooks can be easily shared across projects or even published to a library for others to use.</li>
                 </ol>
             </div>
+
+            <ReactToPdf targetRef={ref} filename="div-blue.pdf">
+                {({toPdf}) => (
+                    <button className="inline-flex items-center px-4 py-2 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest bg-gray-500 hover:bg-gray-600 active:bg-gray-700 outline-none focus:border-gray-600 focus:ring ring-gray-300 disabled:opacity-25 disabled:cursor-not-allowed transition ease-in-out duration-150 mt-8" onClick={toPdf}>Generate pdf</button>
+                )}
+            </ReactToPdf>
         </section>
     );
 };
