@@ -9,6 +9,6 @@ This is a client-side recipe website created using React. The website allows use
 - This website includes contact page
 - In blog page User can download the blog pdf version
 
-To view the live site, visit: [url](url)
+To view the live site, visit: [url](https://cheafer-93055.web.app/)
 
-To view the server site, visit: [url](url)
+To view the server site, visit: [url](https://chefer-server.vercel.app/)
