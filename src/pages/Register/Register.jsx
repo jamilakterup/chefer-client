@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import Lottie from "lottie-react";
-import groovyWalkAnimation from "../../../public/login.json";
+import groovyWalkAnimation from "../../assets/login.json";
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../providers/AuthProvider';
 import {updateProfile} from 'firebase/auth';

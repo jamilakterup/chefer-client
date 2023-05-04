@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState} from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {FaGoogle, FaGithub} from 'react-icons/fa';
 import Lottie from "lottie-react";
-import groovyWalkAnimation from "../../../public/login.json";
+import groovyWalkAnimation from "../../assets/login.json";
 import {AuthContext} from '../../providers/AuthProvider';
 
 const Login = () => {

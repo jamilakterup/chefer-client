@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     {
         path: 'recipes/:id',
         element: <PrivetRoutes><Recipes /></PrivetRoutes>,
-        loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`)
+        loader: ({params}) => fetch(`https://chefer-server.vercel.app/recipes/${params.id}`)
     }
 ])
 

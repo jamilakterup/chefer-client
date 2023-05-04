@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import LazyLoad from 'react-lazy-load';
 
 const ChefData = ({chef}) => {
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
-            <figure><img className='h-[230px] w-full' src={chef.bannerImage} alt="Shoes" /></figure>
+            <LazyLoad offset={0}><img className='h-[230px] w-full' src={chef.bannerImage} alt="Shoes" /></LazyLoad>
             <div className="card-body">
                 <h2 className="card-title">{chef.chefName}</h2>
                 <p>{chef.chefDescription}</p>
