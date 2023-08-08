@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ChefData from '../ChefData/ChefData';
 import ExtraSearch from '../ExtraSection/ExtraSearch';
 import Newsletter from '../News/Newsletter';
+import ExtraSection from './ExtraSection/ExtraSection';
 
 const Home = () => {
     const [chefs, setChefs] = useState([]);
@@ -24,6 +25,7 @@ const Home = () => {
                     />)
                 }
             </div>
+            <ExtraSection />
             <Newsletter />
         </section>
     );
